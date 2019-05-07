@@ -1,0 +1,203 @@
+{
+    "title": "Azure ML Web Services Management Client",
+    "description": "These APIs allow end users to operate on Azure Machine Learning Web Services resources. They support the following operations:<ul><li>Create or update a web service</li><li>Get a web service</li><li>Patch a web service</li><li>Delete a web service</li><li>Get All Web Services in a Resource Group </li><li>Get All Web Services in a Subscription</li><li>Get Web Services Keys</li></ul>",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/machinelearning-webservices/2017-01-01/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "Operations_List": {
+            "main": "./lib/actions/Operations_List.js",
+            "title": "Lists all the available REST API operations.",
+            "description": "Lists all the available REST API operations.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Operations_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "WebServices_ListBySubscriptionId": {
+            "main": "./lib/actions/WebServices_ListBySubscriptionId.js",
+            "title": "Gets the web services in the specified subscription.",
+            "description": "Gets the web services in the specified subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/WebServices_ListBySubscriptionId.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "WebServices_ListByResourceGroup": {
+            "main": "./lib/actions/WebServices_ListByResourceGroup.js",
+            "title": "Gets the web services in the specified resource group.",
+            "description": "Gets the web services in the specified resource group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/WebServices_ListByResourceGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "WebServices_Remove": {
+            "main": "./lib/actions/WebServices_Remove.js",
+            "title": "Deletes the specified web service.",
+            "description": "Deletes the specified web service.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/WebServices_Remove.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "WebServices_Get": {
+            "main": "./lib/actions/WebServices_Get.js",
+            "title": "Gets the Web Service Definition as specified by a subscription, resource group, and name. Note that the storage credentials and web service keys are not returned by this call. To get the web service access keys, call List Keys.",
+            "description": "Gets the Web Service Definition as specified by a subscription, resource group, and name. Note that the storage credentials and web service keys are not returned by this call. To get the web service access keys, call List Keys.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/WebServices_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "WebServices_Patch": {
+            "main": "./lib/actions/WebServices_Patch.js",
+            "title": "Modifies an existing web service resource. The PATCH API call is an asynchronous operation. To determine whether it has completed successfully, you must perform a Get operation.",
+            "description": "Modifies an existing web service resource. The PATCH API call is an asynchronous operation. To determine whether it has completed successfully, you must perform a Get operation.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/WebServices_Patch.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "WebServices_CreateOrUpdate": {
+            "main": "./lib/actions/WebServices_CreateOrUpdate.js",
+            "title": "Create or update a web service. This call will overwrite an existing web service. Note that there is no warning or confirmation. This is a nonrecoverable operation. If your intent is to create a new web service, call the Get operation first to verify that it does not exist.",
+            "description": "Create or update a web service. This call will overwrite an existing web service. Note that there is no warning or confirmation. This is a nonrecoverable operation. If your intent is to create a new web service, call the Get operation first to verify that it does not exist.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/WebServices_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "WebServices_CreateRegionalProperties": {
+            "main": "./lib/actions/WebServices_CreateRegionalProperties.js",
+            "title": "Creates an encrypted credentials parameter blob for the specified region. To get the web service from a region other than the region in which it has been created, you must first call Create Regional Web Services Properties to create a copy of the encrypted credential parameter blob in that region. You only need to do this before the first time that you get the web service in the new region.",
+            "description": "Creates an encrypted credentials parameter blob for the specified region. To get the web service from a region other than the region in which it has been created, you must first call Create Regional Web Services Properties to create a copy of the encrypted credential parameter blob in that region. You only need to do this before the first time that you get the web service in the new region.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/WebServices_CreateRegionalProperties.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "WebServices_ListKeys": {
+            "main": "./lib/actions/WebServices_ListKeys.js",
+            "title": "Gets the access keys for the specified web service.",
+            "description": "Gets the access keys for the specified web service.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/WebServices_ListKeys.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

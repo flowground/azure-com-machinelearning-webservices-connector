@@ -1,0 +1,22 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "webServiceName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {},
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
